@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: warehouses
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Warehouses
+    username: postgres
+    password: ArVitsi.0
+  jpa:
+    generate-ddl: false
+    show-sql: false
