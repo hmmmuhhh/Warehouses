@@ -1,5 +1,6 @@
 package com.example.warehouseapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -19,23 +20,15 @@ public class Shop {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "shop")
-    private List<Product> products = new ArrayList<>();
-
     @ManyToMany
     @JoinTable(
             name = "shop_warehouse",
             joinColumns = @JoinColumn(name = "shop_id"),
             inverseJoinColumns = @JoinColumn(name = "warehouse_id")
     )
+
+    @JsonIgnore
     private List<Warehouse> warehouses = new ArrayList<>();
-
-    public Shop() {
-    }
-
-    public Shop(String name) {
-        this.name = name;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -43,10 +36,6 @@ public class Shop {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public void setWarehouses(List<Warehouse> warehouses) {

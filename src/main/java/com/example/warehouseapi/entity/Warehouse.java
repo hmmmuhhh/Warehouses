@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "warehouse")
 public class Warehouse {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +21,6 @@ public class Warehouse {
 
     @ManyToMany(mappedBy = "warehouses")
     private List<Shop> shops = new ArrayList<>();
-
-    @OneToMany(mappedBy = "warehouse")
-    private List<Product> products = new ArrayList<>();
 
     public Warehouse() {
     }
@@ -39,14 +35,6 @@ public class Warehouse {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setShops(List<Shop> shops) {
-        this.shops = shops;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     @Override

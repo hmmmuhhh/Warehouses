@@ -18,4 +18,4 @@ spring:
 flyway:
   enabled: true
 
-Replace your_db_name, your_username, and your_password with your local PostgreSQL configuration
+# replace the environment variable names with your local names (eg. Warehouses, postgres, 12345)

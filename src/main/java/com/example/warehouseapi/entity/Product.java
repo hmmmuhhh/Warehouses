@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "product")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,23 +31,15 @@ public class Product {
     @Column(nullable = false)
     private Integer quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "warehouse_id", nullable = false)
-    private Warehouse warehouse;
+    @NotNull(message = "Warehouse ID is required")
+    @Column(name = "warehouse_id", nullable = false)
+    private Long warehouseId;
 
-    @ManyToOne
-    @JoinColumn(name = "shop_id", nullable = false)
-    private Shop shop;
+    @NotNull(message = "Shop ID is required")
+    @Column(name = "shop_id", nullable = false)
+    private Long shopId;
 
     public Product() {
-    }
-
-    public Product(String name, BigDecimal price, Integer quantity, Warehouse warehouse, Shop shop) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.warehouse = warehouse;
-        this.shop = shop;
     }
 
     public void setId(Long id) {
@@ -67,12 +58,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
+    public void setWarehouseId(Long warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
     }
 
     @Override
@@ -82,6 +73,8 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
+                ", warehouseId=" + warehouseId +
+                ", shopId=" + shopId +
                 '}';
     }
 }
